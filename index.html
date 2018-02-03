@@ -302,6 +302,8 @@
 
 let aTags = document.querySelectorAll('nav.menu >ul >li >a')
 
+//调用了tween库，用缓动函数，实现缓动
+
 function animate(time) {
     requestAnimationFrame(animate);
     TWEEN.update(time);
@@ -317,21 +319,22 @@ for(let i=0;i<aTags.length;i++){
 		// let top = element.offsetTop
 		let top = document.querySelector(x.currentTarget.getAttribute('href')).offsetTop
 		//等于上面4句
-
-		let n=25  //一共动多少次
-		let duration =500/n   //多长时间动一次
 		let currentTop = window.scrollY
 		let targetTop =  top-80
-		let distance =(targetTop-currentTop)/n
-		let i = 0
-		let id =setInterval(()=>{
-			if(i===n){
-				window.clearInterval(id)
-				return
-			}
-			i=i+1
-			window.scrollTo(0,currentTop+distance*i)		
-		},duration)
+		let s = targetTop - currentTop
+		var coords = { y: currentTop }; 
+		var t = Math.abs((s/100)*300)  //求绝对值
+
+		if(t>500){
+			t=500
+		}
+		var tween = new TWEEN.Tween(coords) 
+        .to({ y: targetTop }, t) 
+        .easing(TWEEN.Easing.Quadratic.InOut) //
+        .onUpdate(function() {
+          window.scrollTo(0,coords.y)
+        })
+        .start(); 
 	}
 }
 </script>
