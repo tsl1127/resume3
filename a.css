@@ -33,6 +33,32 @@ h1,h2,h3,h4,h5,h6{
     clear:both;
 }
 
+/* [data-x].active{
+    outline: 1px solid red;
+} */
+[data-x].offset{
+    transform: translateY(100px);
+}
+[data-x]{
+    transform: translateY(0);
+    transition: all 0.5s;
+}
+
+
+/* [data-x].animate{
+    animation: slideUp 0.5s;
+} */
+
+/* @keyframes slideUp{
+    0%{
+        transform: translateY(-30px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+} */
+
+
 .topNavBar {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -85,7 +111,8 @@ h1,h2,h3,h4,h5,h6{
     position: relative;
 }
 
-.topNavBar  nav >ul > li.active > a::after {
+.topNavBar  nav >ul > li.active > a::after,
+.topNavBar  nav >ul > li.highlight > a::after {
     /* border-bottom: 3px solid #e06568; */
     content: '';
     display: block;
@@ -383,6 +410,7 @@ section.skills .progressBar { /*外面的进度边框*/
     background: #fae1e1;
     border-radius: 2px;/*圆角*/
     margin: 4px 0px 40px;
+    overflow: hidden;
 }
 
 section.skills .progressBar .progress{  /*里面的进度条*/
@@ -390,6 +418,12 @@ section.skills .progressBar .progress{  /*里面的进度条*/
     background: #e6686a;
     width: 70%; 
     border-radius: 2px;
+    transform: translateX(0);
+    transition: all 1s;
+}
+
+section.skills.offset .progress{
+    transform: translateX(-100%);
 }
 
 section.portfolio > h2{

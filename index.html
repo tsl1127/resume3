@@ -75,7 +75,7 @@
 	</div>
 </div>
 <main >
-	<div id="siteAbout" class="userCard">
+	<div data-x id="siteAbout" class="userCard">
 			<div class="pictureAndText clearfix">	
 					<div class="picture">
 							<img src="./img/avatar.jpg" width=299 height=347 alt="头像">
@@ -140,7 +140,7 @@
 	技能：前端开发，Node.js开发
 </p>
 </main>
-<section id="siteSkills" class="skills">
+<section data-x id="siteSkills" class="skills">
 	<h2>
 		技能	
 	</h2>	
@@ -220,7 +220,7 @@
 							</li>						
 	</ol>
 </section>
-<section class="portfolio"  id="siteWorks"  >
+<section data-x class="portfolio"  id="siteWorks"  >
 	<h2>作品集</h2>
 	<nav>
 		<ol class="clearfix">
@@ -265,14 +265,54 @@
 <script>  //前面的就是加载完了，把active类给删掉
 	setTimeout(function(){
 		siteWelcome.classList.remove('active')
-	},3000)
+	},1000)
 	
-	window.onscroll = function(){
+//添加offset类	
+let specialTags = document.querySelectorAll('[data-x]')
+for(let i=0;i<specialTags.length;i++){
+	specialTags[i].classList.add('offset')
+}			
+///////////////////////////
+setTimeout(function(){
+	findClosest()	
+},1000)    //这里再先写一次findClosest函数，原因是为让第一个与后面2个特殊标记一样开始有效果（原始位置先下移100px，然后再
+                                       //回到位置0）可以不需要延时（这里需要是因为被loading遮住了）
+
+	window.onscroll = function(x){
 		if(window.scrollY >0){
 			topNavBar.classList.add('sticky')
 		}else{
 			topNavBar.classList.remove('sticky')
 		}
+		findClosest()
+	}
+
+	function findClosest(){
+		let specialTags = document.querySelectorAll('[data-x]')
+		let minIndex = 0
+		for(let i=1;i<specialTags.length;i++){
+		if(Math.abs(specialTags[i].offsetTop-window.scrollY)<Math.abs(specialTags[minIndex].offsetTop-window.scrollY)){
+			minIndex = i   //哪一个与最上面的距离最小，就把哪一个找出来
+			}
+		}
+		//minIndex就是离窗口顶部最近的元素
+		specialTags[minIndex].classList.remove('offset')
+		// console.log(minIndex)
+		// for(let i =0;i<specialTags.length;i++){   //把所有的效果去掉
+		// 	specialTags[i].classList.remove('active')
+		// }
+		// specialTags[minIndex].classList.add('active')  //只是在最小的地方加active
+		let id = specialTags[minIndex].id
+		// console.log(id)
+		let a =document.querySelector('a[href="#'+ id +'"]')    //从div找到a标签
+		//id =='siteAbout'   'a[href="#siteAbout"]'  
+		let li = a.parentNode   //找到a标签的父亲
+		let brothersAndMe = li.parentNode.children
+		for(let i=0;i<brothersAndMe.length;i++)
+		{
+			brothersAndMe[i].classList.remove('highlight')
+		}
+		li.classList.add('highlight')
 	}
 
 	// let liTags = document.getElementsByClassName('menuTigger')
