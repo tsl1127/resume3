@@ -431,11 +431,12 @@ section.portfolio > h2{
     color: #3d4451;
     font-size: 34px;
     line-height: 1.2;
-    font-weight: 600;     
+    font-weight: 600;    
+    margin-bottom: 32px; 
 }
 
 section.portfolio {
-    max-width: 940px;
+    max-width: 720px;
     margin-left: auto;
     margin-right: auto; 
     margin-top: 60px;
@@ -446,78 +447,35 @@ section.portfolio{
     margin-bottom: 100px;
 }
 
-section.portfolio >nav{
-    text-align: center;
+
+section.portfolio .swiper-container {
+    width: 668px;
+    height: 501px;
 }
 
-section.portfolio >nav >ol{
-    /* border:1px solid red; */
-    margin:0 auto;
-    display: inline-block;
-    vertical-align: top;
+section.portfolio .swiper-slide{
+    background: white;
 }
 
-section.portfolio >nav >ol >li{
-    float: left;
-    margin-left: 40px;
-    cursor: pointer;/*光标从显示I变成手形*/
+section.portfolio .swiper-button-prev{
+    background-color: white;
+    border-radius: 50%;
+    width:64px;
+    height: 64px;
+    right: 100%;
+    left: auto;
 }
 
-section.portfolio >nav >ol >li:nth-child(1){
-    margin-left: 0px;
+section.portfolio .swiper-button-next{
+    background-color: white;
+    border-radius: 50%;
+    width:64px;
+    height: 64px;
+    right: auto;
+    left: 100%;
 }
 
-/* section.portfolio >nav >ol >li:first-child{
-    margin-left: 0px;
-}也可以用这种 */
 
-section.portfolio >nav{
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 32px;
-}
 
-section.portfolio >nav .bar{
-    height: 5px;
-    background:white;
-    margin-top: 5px;
-    margin-bottom: 28px;
-    border-radius: 2px;
-}
-
-section.portfolio >nav .bar .bar-inner{
-    height: 100%;
-    background: #e6686a;   
-    /* width: 10%; */
-    border-radius: 2px;
-    transition: all 0.3s; /*动画过渡*/
-}
-
-section.portfolio >nav .bar.state-1 .bar-inner{
-    margin-left: 0px;
-    width:34px;
-}
-
-section.portfolio >nav .bar.state-2 .bar-inner{
-    margin-left: 72px;
-    width:34px;
-}
-
-section.portfolio >nav .bar.state-3 .bar-inner{
-    margin-left: 145px;
-    width:99px;
-}
-
-section.portfolio .works{
-    position: relative;
-    /* border: 1px solid red; */
-    height: 597px;
-}
-
-section.portfolio .works .big,
-section.portfolio .works .small
-{
-    position: absolute;
-}
 
 

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<title>我的个人简历</title>
-		<link rel="stylesheet" href="./a.css">
+	<title>我的个人简历</title>		
 		<link rel="stylesheet" href="./loading.css">
+		<link rel="stylesheet" href="./vendor/swiper.min.css">
+		<link rel="stylesheet" href="./a.css">
 		<script src="//at.alicdn.com/t/font_461366_hrpkdr8q7k384cxr.js"></script>
 		<style type="text/css">
 		
@@ -75,6 +76,7 @@
 	</div>
 </div>
 <main >
+
 	<div data-x id="siteAbout" class="userCard">
 			<div class="pictureAndText clearfix">	
 					<div class="picture">
@@ -221,35 +223,27 @@
 	</ol>
 </section>
 <section data-x class="portfolio"  id="siteWorks"  >
-	<h2>作品集</h2>
-	<nav>
-		<ol class="clearfix">
-			<li id="portfolioAll">所有</li>
-			<li id="portfolioFramework">框架</li>
-			<li id="portfolioVallina">原生JS &amp; CSS</li>
-		</ol>
-		<div id="portfolio" class="bar state-1">  
-			<div class="bar-inner">
-
-			</div>
-		</div>
-	</nav>
-	<script>
-		portfolioAll.onclick=function(){
-			portfolio.className='bar state-1'
-		}
-		
-		portfolioFramework.onclick=function(){
-			portfolio.className='bar state-2'
-		}
-
-		portfolioVallina.onclick=function(){
-			portfolio.className='bar state-3'
-		}
-
-	</script>
-
-	<div class="works">
+	<h2>作品集</h2>			
+				<!-- Slider main container -->
+			<div class="swiper-container">
+					<!-- Additional required wrapper -->
+					<div class="swiper-wrapper">
+						<!-- Slides -->
+						<img src="./img/works/nav-page.jpg" class="swiper-slide">
+						<img src="./img/works/canvas.jpg" class="swiper-slide">
+						<img src="./img/works/apple-like-slides.jpg" class="swiper-slide">
+					</div>
+					<!-- If we need pagination -->
+					<div class="swiper-pagination"></div>									
+				 
+					<!-- If we need scrollbar -->
+					<!-- <div class="swiper-scrollbar"></div> -->
+				</div>
+				<!-- If we need navigation buttons -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			
+	<!-- <div class="works">
 		<div class="big" style="top:0px;left:0px">
 			<img src="./img/1.jpg" alt="作品1">
 		</div>
@@ -259,9 +253,34 @@
 		<div class="small" style="top:312px;left:645px">
 			<img src="./img/3.jpg" alt="作品3">
 			</div>		
-	</div>
+	</div> -->
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
+<script src="./vendor/swiper.min.js"></script>
+<script>
+	console.log(window.Swiper)
+	var mySwiper = new Swiper ('.swiper-container', {
+    // Optional parameters
+    // direction: 'vertical',//垂直的不要
+    loop: true,  //是否是无缝的
+
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',   //是否需要分页器
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    // And if we need scrollbar
+    // scrollbar: {
+    //   el: '.swiper-scrollbar',   //是否需要滚动条
+    // },
+  })
+</script>
 <script>  //前面的就是加载完了，把active类给删掉
 	setTimeout(function(){
 		siteWelcome.classList.remove('active')
