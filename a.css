@@ -426,6 +426,15 @@ section.skills.offset .progress{
     transform: translateX(-100%);
 }
 
+section.message >h2 {
+    text-align: center;
+    color: #3d4451;
+    font-size: 34px;
+    line-height: 1.2;
+    font-weight: 600;    
+    margin-bottom: 32px;    
+}
+
 section.portfolio > h2{
     text-align: center;
     color: #3d4451;
@@ -475,7 +484,16 @@ section.portfolio .swiper-button-next{
     left: 100%;
 }
 
+section.message > ol{
+    max-width: 680px;
+    margin: 0 auto;
+    border-top:1px solid #ddd;
+}
 
+section.message > ol > li{
+    padding: 16px;
+    border-bottom:1px solid #ddd;
+}
 
 
 
