@@ -1,45 +1,39 @@
 !function(){
-    var view = document.querySelector('section.message')
-    var model ={
-        init:function(){
-            var APP_ID = 'L1qdr63Ikg3s8ayQefGU95T0-gzGzoHsz'
-            var APP_KEY = 'IdAeyhOVHECra46oe039Np0E'
-            
-            AV.init({
-              appId: APP_ID,
-              appKey: APP_KEY
-            })
-        },
-        //获取数据
-        fetch:function(){
-            var query = new AV.Query('Message');
-            return query.find()   //Promise对象
-        },
-        //创建数据
-        save:function(name,content){
-            var Message = AV.Object.extend('Message');
-            var message = new Message()
-            return message.save({   //Promise对象
-                'name':name,
-                'content': content
-              })
-        }
-    }
+    var view = window.View('section.message')
+    var model =window.Model({resourceName:'Message'})
 
-    var controller={
-        view:null,
-        messageList:null,
-        model:null,
-        form:null,
-        init:function(view,model){
-            this.view=view
-            this.model = model
-            this.model.init()
+
+    //     init:function(){
+    //         var APP_ID = 'L1qdr63Ikg3s8ayQefGU95T0-gzGzoHsz'
+    //         var APP_KEY = 'IdAeyhOVHECra46oe039Np0E'
+            
+    //         AV.init({
+    //           appId: APP_ID,
+    //           appKey: APP_KEY
+    //         })
+    //     },
+    //     //获取数据
+    //     fetch:function(){
+    //         var query = new AV.Query('Message');
+    //         return query.find()   //Promise对象
+    //     },
+    //     //创建数据
+    //     save:function(name,content){
+    //         var Message = AV.Object.extend('Message');
+    //         var message = new Message()
+    //         return message.save({   //Promise对象
+    //             'name':name,
+    //             'content': content
+    //           })
+    //     }
+  
+    var controller = window.Controller({
+        init:function(view,controller){
             this.messageList=view.querySelector('#messageList')
-            this.form = view.querySelector('#postMessageForm')           
+            this.form = view.querySelector('#postMessageForm') 
             this.loadMessages()
-            this.bindEvents()
-        },     
+            //Controller.js里是没有上面3个属性的（如果不加for循环）
+        }, 
         loadMessages:function(){
             this.model.fetch().then(
                  (messages)=> {
@@ -54,7 +48,7 @@
                     this.messageList.appendChild(li)
                 })}
                 )          
-        },
+        }, 
         bindEvents:function(){           
             this.form.addEventListener('submit',(e)=>{
                 e.preventDefault()  //不阻止则会刷新页面
@@ -65,7 +59,10 @@
             let myForm = this.form
             let content=myForm.querySelector('input[name=content]').value  //找到用户输入的内容
             let name = myForm.querySelector('input[name=name]').value
-            this.model.save(name,content).then((object)=> {
+            this.model.save({
+                'name':name,
+                'content':content
+            }).then((object)=> {
                 //   window.location.reload()
                 let li=document.createElement('li')
                 li.innerText=`${object.attributes.name}:${object.attributes.content}`
@@ -75,9 +72,11 @@
                 myForm.querySelector('input[name=name]').value=''
                 // console.log(object)
               })
-        }
+        }     
         
-    }
+    })
+
+ 
     controller.init(view,model)
     
 

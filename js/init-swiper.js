@@ -1,5 +1,5 @@
 !function(){
-    var view = document.querySelector('#mySlides')
+    var view = window.View('#mySlides')
     // view.style.border = '1px solid red'
     var controller = {
         view:null,

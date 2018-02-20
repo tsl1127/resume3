@@ -1,5 +1,5 @@
 !function(){
-    var view = document.querySelector('#topNavBar')
+    var view = window.View('#topNavBar')
     // view.style.border = '1px solid red'
     var controller = {
         view:null,
