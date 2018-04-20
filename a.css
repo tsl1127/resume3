@@ -208,7 +208,7 @@ h1,h2,h3,h4,h5,h6{
 
 .banner{
     height:515px;
-    background-image:url(./img/rs-cover.jpg);   
+    background-image:url(./img/cards.jpg);   
     background-position: center center; /*图片居中*/
     background-size: cover;/*按比例缩放*/
 }
